@@ -1,0 +1,6 @@
+{
+  "name": "KrushiMitra",
+  "description": "An AI-powered agriculture assistant helping Indian farmers increase crop yields, access live mandi rates, detect crop diseases, and manage farms.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
