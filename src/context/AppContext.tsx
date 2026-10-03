@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Language, translations } from '../utils/translations';
 
 type AIModel = 'gemini' | 'claude';
-type Page = 'home' | 'disease' | 'soil' | 'weather' | 'fertilizer' | 'settings';
+export type Page = 'home' | 'disease' | 'soil' | 'weather' | 'fertilizer' | 'doctor' | 'history' | 'market' | 'settings';
 
 interface AppContextType {
   lang: Language;
