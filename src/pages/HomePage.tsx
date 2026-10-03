@@ -1,94 +1,24 @@
 import React from 'react';
+import { ArrowRight, Camera, Check, ChevronRight, CloudSun, Droplets, Leaf, MessageCircle, ShieldCheck, Sprout, TrendingUp, Upload } from 'lucide-react';
 import { useApp } from '../context/AppContext';
-import { Sprout, FlaskConical, CloudSun, Leaf } from 'lucide-react';
 
-const cards = [
-  {
-    key: 'disease' as const,
-    icon: Sprout,
-    color: 'from-red-500 to-orange-400',
-    bg: 'bg-red-50',
-    border: 'border-red-200',
-    iconBg: 'bg-red-100',
-    emoji: '🌿',
-  },
-  {
-    key: 'soil' as const,
-    icon: FlaskConical,
-    color: 'from-amber-600 to-yellow-400',
-    bg: 'bg-amber-50',
-    border: 'border-amber-200',
-    iconBg: 'bg-amber-100',
-    emoji: '🌱',
-  },
-  {
-    key: 'weather' as const,
-    icon: CloudSun,
-    color: 'from-sky-500 to-blue-400',
-    bg: 'bg-sky-50',
-    border: 'border-sky-200',
-    iconBg: 'bg-sky-100',
-    emoji: '⛅',
-  },
-  {
-    key: 'fertilizer' as const,
-    icon: Leaf,
-    color: 'from-green-600 to-emerald-400',
-    bg: 'bg-green-50',
-    border: 'border-green-200',
-    iconBg: 'bg-green-100',
-    emoji: '🌾',
-  },
+const tools = [
+  { key: 'disease' as const, icon: Camera, title: 'पिकाची तपासणी', desc: 'फोटो काढा आणि पिकाची लक्षणे समजून घ्या', tone: 'bg-emerald-50 text-emerald-700 border-emerald-100' },
+  { key: 'soil' as const, icon: Sprout, title: 'मातीची काळजी', desc: 'मातीच्या आरोग्यासाठी सोप्या सूचना', tone: 'bg-amber-50 text-amber-700 border-amber-100' },
+  { key: 'market' as const, icon: TrendingUp, title: 'आजचा बाजारभाव', desc: 'विश्वसनीय स्रोतांवरील ताजे भाव', tone: 'bg-sky-50 text-sky-700 border-sky-100' },
+  { key: 'doctor' as const, icon: MessageCircle, title: 'AI Farm Doctor', desc: 'तुमचा प्रश्न विचारा, मराठीत उत्तर मिळवा', tone: 'bg-violet-50 text-violet-700 border-violet-100' },
 ];
 
-const titleKeys = ['diseaseDetect', 'soilAnalysis', 'weatherAdvice', 'fertilizerGuide'] as const;
-const descKeys = ['diseaseDesc', 'soilDesc', 'weatherDesc', 'fertDesc'] as const;
-
 export default function HomePage() {
-  const { t, setPage } = useApp();
-
-  return (
-    <div className="flex flex-col gap-6 px-4 pb-8">
-      {/* Hero */}
-      <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-green-700 via-green-600 to-emerald-500 p-6 shadow-xl">
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-        <div className="relative z-10">
-          <div className="text-4xl mb-1">🌾</div>
-          <h1 className="text-white text-2xl font-bold font-baloo">{t.welcome}</h1>
-          <p className="text-green-100 text-sm mt-1">{t.welcomeDesc}</p>
-        </div>
-        <div className="absolute right-4 bottom-4 text-6xl opacity-20">🌿</div>
-      </div>
-
-      {/* Cards */}
-      <p className="text-gray-500 text-sm font-medium px-1">{t.tapCard}</p>
-      <div className="grid grid-cols-2 gap-4">
-        {cards.map((card, i) => {
-          const Icon = card.icon;
-          const title = t[titleKeys[i]];
-          const desc = t[descKeys[i]];
-          return (
-            <button
-              key={card.key}
-              onClick={() => setPage(card.key)}
-              className={`${card.bg} ${card.border} border-2 rounded-2xl p-4 text-left shadow-sm hover:shadow-md active:scale-95 transition-all duration-200 flex flex-col gap-3`}
-            >
-              <div className={`${card.iconBg} w-12 h-12 rounded-xl flex items-center justify-center text-2xl`}>
-                {card.emoji}
-              </div>
-              <div>
-                <p className="font-bold text-gray-800 text-sm leading-tight">{title}</p>
-                <p className="text-gray-500 text-xs mt-1 leading-snug">{desc}</p>
-              </div>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Footer */}
-      <p className="text-center text-xs text-gray-400 mt-2">{t.madeBy}</p>
-    </div>
-  );
+  const { setPage } = useApp();
+  return <div className="page-wrap">
+    <section className="hero-grid">
+      <div className="hero-copy"><div className="eyebrow">KRUSHIMITRA • DIGITAL FARM DOCTOR</div><h1>शेतकऱ्यांसाठी<br /><span>AI ची नवी मदत.</span></h1><p>पिकाचा फोटो काढा, समस्या समजून घ्या आणि योग्य पुढील पाऊल जाणून घ्या.</p><div className="flex flex-wrap gap-3 mt-7"><button onClick={() => setPage('disease')} className="primary-button !px-6 !py-3.5">पिकाची तपासणी करा <ArrowRight size={18} /></button><button onClick={() => document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })} className="secondary-button">कसे काम करते? <ChevronRight size={17} /></button></div><div className="flex items-center gap-5 mt-7 text-sm text-slate-500"><span><Check size={15} className="inline text-emerald-600 mr-1" /> मराठी प्रथम</span><span><Check size={15} className="inline text-emerald-600 mr-1" /> सोपे आणि सुरक्षित</span></div></div>
+      <div className="field-art"><div className="sun" /><div className="cloud cloud-one" /><div className="cloud cloud-two" /><div className="farmer">👨🏽‍🌾</div><div className="crop-row row-one">🌱 🌱 🌱 🌱 🌱</div><div className="crop-row row-two">🌾 🌾 🌾 🌾 🌾</div><div className="art-card"><div className="avatar bg-emerald-100 text-emerald-700"><ShieldCheck size={20} /></div><div><strong>Health Card ready</strong><p>Tomato • Medium confidence</p></div></div></div>
+    </section>
+    <section className="stats-strip"><div><strong>01</strong><span>फोटो काढा</span></div><div><strong>02</strong><span>AI तपासणी</span></div><div><strong>03</strong><span>उपाय समजा</span></div><p className="hidden md:block ml-auto max-w-xs text-sm text-slate-500">Digital Health Card आणि कृती योजना तुमच्यासोबत.</p></section>
+    <section className="mt-12" id="how-it-works"><div className="section-heading"><div><div className="eyebrow text-emerald-700">YOUR FARM, YOUR CONTROL</div><h2>आज कशासाठी मदत हवी?</h2><p>तुमच्या शेतीसाठी बनवलेले सोपे डिजिटल टूल्स.</p></div><button onClick={() => setPage('history')} className="text-button">माझे Health Cards <ArrowRight size={16} /></button></div><div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">{tools.map(({ key, icon: Icon, title, desc, tone }) => <button onClick={() => setPage(key)} key={key} className={`tool-card ${tone}`}><div className="flex justify-between items-start"><span className="tool-icon"><Icon size={22} /></span><ChevronRight size={18} /></div><h3>{title}</h3><p>{desc}</p></button>)}</div></section>
+    <section className="split-callout"><div><div className="eyebrow text-emerald-700">FROM PHOTO TO PLAN</div><h2>तुमच्या पिकाची गोष्ट,<br />एका Health Card मध्ये.</h2><p>लक्षणे, संभाव्य कारणे आणि पुढील 3/7 दिवसांची कृती — सगळे एका जागी. AI चा सल्ला प्राथमिक मार्गदर्शनासाठी आहे.</p><button onClick={() => setPage('disease')} className="secondary-button mt-4">पहिली तपासणी सुरू करा <Upload size={17} /></button></div><div className="mini-card"><div className="flex justify-between"><span className="status-pill bg-amber-100 text-amber-700">Attention needed</span><span className="text-xs text-slate-400">आज, 10:42</span></div><h3>टोमॅटो • पानांवर डाग</h3><div className="progress-line"><span /></div><div className="flex justify-between text-xs text-slate-500 mt-2"><span>Confidence</span><strong>Medium</strong></div><hr className="my-4 border-slate-100" /><p className="text-sm text-slate-600"><Droplets size={15} className="inline text-sky-500 mr-1" /> आज: पानांवरचा ओलावा कमी ठेवा</p><p className="text-sm text-slate-600 mt-2"><Leaf size={15} className="inline text-emerald-500 mr-1" /> पुढील 3 दिवस: नवीन डाग तपासा</p></div></section>
+    <section className="trust-row"><ShieldCheck className="text-emerald-600" /><div><strong>सुरक्षिततेला आमचे प्राधान्य</strong><p>निश्चित निदान, हमीचा नफा किंवा बनावट बाजारभाव दाखवले जात नाहीत.</p></div><button onClick={() => setPage('settings')} className="text-button ml-auto">सेटिंग्ज <ChevronRight size={16} /></button></section>
+  </div>;
 }

@@ -6,7 +6,10 @@ import SoilPage from './pages/SoilPage';
 import WeatherPage from './pages/WeatherPage';
 import FertilizerPage from './pages/FertilizerPage';
 import SettingsPage from './pages/SettingsPage';
-import { Home, Sprout, FlaskConical, CloudSun, Leaf, Settings, ChevronLeft } from 'lucide-react';
+import DoctorPage from './pages/DoctorPage';
+import HistoryPage from './pages/HistoryPage';
+import MarketPage from './pages/MarketPage';
+import { Home, Sprout, FlaskConical, CloudSun, Leaf, Settings, ChevronLeft, MessageCircle, ClipboardList, Store } from 'lucide-react';
 
 function AppInner() {
   const { t, page, setPage } = useApp();
@@ -17,6 +20,9 @@ function AppInner() {
     { key: 'soil' as const, icon: FlaskConical, label: '🌱' },
     { key: 'weather' as const, icon: CloudSun, label: '⛅' },
     { key: 'fertilizer' as const, icon: Leaf, label: '🌾' },
+    { key: 'doctor' as const, icon: MessageCircle, label: 'AI Doctor' },
+    { key: 'history' as const, icon: ClipboardList, label: 'History' },
+    { key: 'market' as const, icon: Store, label: 'Market' },
     { key: 'settings' as const, icon: Settings, label: t.settings },
   ];
 
@@ -26,14 +32,17 @@ function AppInner() {
     soil: t.soilAnalysis,
     weather: t.weatherAdvice,
     fertilizer: t.fertilizerGuide,
+    doctor: 'KrushiMitra AI Doctor',
+    history: 'My Farm Health Cards',
+    market: 'आजचा बाजारभाव',
     settings: t.settings,
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col max-w-md mx-auto relative">
+    <div className="min-h-screen bg-[#f7faf7] text-slate-900">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
-        <div className="flex items-center gap-3 px-4 py-3">
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100">
+        <div className="max-w-6xl mx-auto flex items-center gap-3 px-4 sm:px-8 py-4">
           {page !== 'home' && (
             <button
               onClick={() => setPage('home')}
@@ -45,7 +54,7 @@ function AppInner() {
           <div className="flex items-center gap-2 flex-1">
             {page === 'home' && <span className="text-2xl">🌾</span>}
             <div>
-              <h1 className="font-bold text-gray-800 text-lg leading-tight font-baloo">
+              <h1 className="font-bold text-slate-900 text-lg leading-tight font-baloo">
                 {pageTitle[page]}
               </h1>
               {page === 'home' && (
@@ -65,18 +74,21 @@ function AppInner() {
       </header>
 
       {/* Content */}
-      <main className="flex-1 overflow-y-auto pt-4">
+      <main className="max-w-6xl mx-auto w-full overflow-y-auto pt-4">
         {page === 'home' && <HomePage />}
         {page === 'disease' && <DiseasePage />}
         {page === 'soil' && <SoilPage />}
         {page === 'weather' && <WeatherPage />}
         {page === 'fertilizer' && <FertilizerPage />}
+        {page === 'doctor' && <DoctorPage />}
+        {page === 'history' && <HistoryPage />}
+        {page === 'market' && <MarketPage />}
         {page === 'settings' && <SettingsPage />}
       </main>
 
       {/* Bottom Nav */}
-      <nav className="sticky bottom-0 bg-white border-t border-gray-100 shadow-lg">
-        <div className="grid grid-cols-6 gap-0">
+      <nav className="sticky bottom-0 z-40 bg-white/95 backdrop-blur border-t border-slate-100 shadow-lg">
+        <div className="max-w-6xl mx-auto grid grid-cols-5 sm:grid-cols-9 gap-0">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = page === item.key;
@@ -93,6 +105,7 @@ function AppInner() {
                 ) : (
                   <Icon size={20} className={isActive ? 'stroke-green-600' : ''} />
                 )}
+                <span className="hidden sm:block text-[10px] mt-1">{item.key === 'disease' ? 'पिक तपासणी' : item.label}</span>
                 {isActive && <div className="w-1 h-1 rounded-full bg-green-500 mt-1" />}
               </button>
             );

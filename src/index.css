@@ -8,9 +8,58 @@
   
   html, body {
     font-family: 'Noto Sans Devanagari', 'Baloo 2', sans-serif;
-    background-color: #f9fafb;
+    background-color: #f7faf7;
     overscroll-behavior: none;
   }
+
+  @layer components {
+    .page-wrap { @apply px-4 sm:px-8 pb-12; }
+    .eyebrow { @apply text-[11px] font-bold tracking-[0.18em] text-emerald-100; }
+    .hero-grid { @apply grid lg:grid-cols-[1.05fr_.95fr] gap-8 lg:gap-14 items-center py-10 lg:py-16; }
+    .hero-copy h1 { @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] mt-4 text-slate-900; }
+    .hero-copy h1 span { @apply text-emerald-600; }
+    .hero-copy p { @apply text-slate-500 text-base sm:text-lg leading-7 max-w-xl mt-5; }
+    .primary-button { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-700 text-white font-bold px-5 py-3 transition hover:bg-emerald-800 disabled:opacity-50; }
+    .secondary-button { @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white text-slate-700 font-bold px-5 py-3 transition hover:border-emerald-300 hover:text-emerald-700; }
+    .text-button { @apply inline-flex items-center gap-1 text-sm font-bold text-emerald-700 hover:text-emerald-900; }
+    .field { @apply rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100; }
+    .panel { @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-sm; }
+    .feature-banner { @apply rounded-2xl bg-gradient-to-br p-6 sm:p-8 text-white mb-6; }
+    .feature-banner h2, .section-heading h2 { @apply text-2xl sm:text-3xl font-bold tracking-tight mt-1; }
+    .feature-banner p, .section-heading p { @apply text-sm text-white/75 mt-2; }
+    .section-heading { @apply flex flex-wrap items-end justify-between gap-4 mb-5; }
+    .section-heading p { @apply text-slate-500; }
+    .tool-card { @apply rounded-2xl border p-5 text-left transition hover:-translate-y-1 hover:shadow-md; }
+    .tool-card h3 { @apply text-base font-bold text-slate-800 mt-5; }
+    .tool-card p { @apply text-sm leading-5 mt-1 text-slate-500; }
+    .tool-icon { @apply w-11 h-11 rounded-xl bg-white/80 flex items-center justify-center; }
+    .status-pill { @apply inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-bold whitespace-nowrap; }
+    .avatar { @apply w-10 h-10 rounded-full flex items-center justify-center; }
+    .icon-button { @apply w-11 h-11 shrink-0 rounded-xl bg-slate-50 text-slate-500 flex items-center justify-center hover:bg-emerald-50 hover:text-emerald-700; }
+    .suggestion { @apply w-full rounded-xl bg-slate-50 p-3 text-left text-sm text-slate-600 hover:bg-emerald-50 hover:text-emerald-700; }
+    .notice { @apply flex items-start gap-2 rounded-xl bg-amber-50 p-3 text-xs leading-5 text-amber-800; }
+    .empty-card { @apply flex items-start gap-4 rounded-2xl border border-dashed border-slate-300 bg-white p-5 text-sm text-slate-600; }
+    .empty-card strong { @apply text-slate-800; }
+    .empty-card p { @apply mt-1 leading-5; }
+    .field-with-icon { @apply flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-slate-400; }
+    .field-with-icon input, .field-with-icon select { @apply w-full bg-transparent py-3 text-sm text-slate-700 outline-none; }
+    .crop-icon { @apply w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center; }
+  }
+
+  .field-art { min-height: 370px; position: relative; overflow: hidden; border-radius: 2rem; background: linear-gradient(180deg,#dff4e7 0%,#b8e2c6 50%,#5b9b58 50%,#28643e 100%); box-shadow: 0 20px 50px rgba(33, 98, 56, .18); }
+  .sun { position: absolute; width: 86px; height: 86px; border-radius: 50%; background: #ffd66b; top: 42px; right: 60px; box-shadow: 0 0 0 12px rgba(255,214,107,.18); }
+  .cloud { position: absolute; width: 130px; height: 30px; border-radius: 30px; background: rgba(255,255,255,.65); }
+  .cloud:before,.cloud:after { content:""; position:absolute; border-radius:50%; background:inherit; }
+  .cloud:before { width: 48px; height: 48px; left: 20px; bottom: 0; }.cloud:after { width: 68px; height: 68px; left: 48px; bottom: 0; }
+  .cloud-one { top: 80px; left: 36px; }.cloud-two { top: 140px; right: 8px; transform: scale(.6); opacity: .6; }
+  .farmer { position: absolute; font-size: 100px; left: 50%; top: 118px; transform: translateX(-50%); filter: drop-shadow(0 12px 6px rgba(0,0,0,.16)); }
+  .crop-row { position: absolute; font-size: 39px; letter-spacing: 13px; white-space: nowrap; transform: rotate(-5deg); }.row-one { bottom: 68px; left: -16px; opacity: .85; }.row-two { bottom: 15px; right: -24px; transform: rotate(4deg); opacity: .7; }
+  .art-card { position:absolute; left: 18px; bottom: 18px; display:flex; align-items:center; gap:10px; background: rgba(255,255,255,.94); padding:10px 14px; border-radius:14px; box-shadow:0 8px 20px rgba(0,0,0,.12); }.art-card strong { font-size:12px; }.art-card p { font-size:11px; color:#64748b; margin-top:2px; }
+  .stats-strip { @apply flex items-center gap-6 sm:gap-10 rounded-2xl border border-emerald-100 bg-white p-5 shadow-sm; }.stats-strip div { @apply flex items-center gap-2; }.stats-strip strong { @apply text-emerald-700 text-2xl; }.stats-strip span { @apply text-sm text-slate-500; }
+  .split-callout { @apply grid lg:grid-cols-2 gap-8 items-center rounded-3xl bg-[#e9f5ec] p-7 sm:p-10 mt-12; }.split-callout h2 { @apply text-3xl font-bold leading-tight mt-2 text-slate-900; }.split-callout p { @apply text-slate-600 leading-6 max-w-lg mt-4; }
+  .mini-card { @apply rounded-2xl bg-white p-5 shadow-sm max-w-md w-full justify-self-center; }.mini-card h3 { @apply font-bold text-slate-800 mt-5; }.progress-line { @apply h-2 rounded-full bg-slate-100 mt-5; }.progress-line span { @apply block w-2/3 h-full rounded-full bg-amber-400; }
+  .trust-row { @apply flex items-center gap-3 rounded-2xl border border-emerald-100 bg-white p-5 mt-6; }.trust-row p { @apply text-xs text-slate-500 mt-1; }
+  .hover-card { @apply transition hover:-translate-y-0.5 hover:shadow-md; }
 
   .font-baloo {
     font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif;
